@@ -73,7 +73,7 @@ import { userDetailRules } from '@/validator/setting'
 import { actionTypeEnum } from '@/enums/commonEnum'
 import { sexOptionsEnum } from '@/enums/settingEnum'
 import { apiGetUserDetail, apiGetDepartmentList, apiAddUser, apiUpdateUser } from '@/service/api/setting'
-import { findTreePath } from '@/utils'
+import { findTreePath } from '@/utils/base'
 
 const props = defineProps<{
   handleRefresh: Function

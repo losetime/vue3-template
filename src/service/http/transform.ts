@@ -9,7 +9,7 @@ import { Prefix } from '@/enums/envEnum'
 import { isString } from 'lodash-es'
 import { errorResult } from './const'
 import { message as messageTip } from 'ant-design-vue'
-import { downloadFiles } from '@/utils'
+import { downloadFiles } from '@/utils/base'
 
 /**
  * @description: 数据处理，方便区分多种处理方式

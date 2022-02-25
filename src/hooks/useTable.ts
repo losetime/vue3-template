@@ -1,5 +1,5 @@
 import { reactive, onMounted } from 'vue'
-import { formatParams } from '@/utils'
+import { formatParams } from '@/utils/base'
 
 /**
  * @desc 表格逻辑

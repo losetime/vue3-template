@@ -127,3 +127,38 @@ export const findTreePath = (tree: any, func: Function, path: number[], fieldNam
   }
   return []
 }
+
+/**
+ * @desc 将base64图片转化为文件对象
+ */
+export const dataURLtoFile = (dataurl: string, filename: string) => {
+  // 获取到base64编码
+  const arr = dataurl.split(',')
+  // 将base64编码转为字符串
+  const bstr = window.atob(arr[1])
+  let n = bstr.length
+  const u8arr = new Uint8Array(n) // 创建初始化为0的，包含length个元素的无符号整型数组
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new File([u8arr], filename, {
+    type: 'image/jpeg',
+  })
+}
+
+/**
+ * @desc 判断下一层路由是否存在且需要显示在菜单上
+ */
+export const isVisibleNextRoute = (route: any) => {
+  const nextRoutes = route.children
+  if (nextRoutes && nextRoutes.length > 0) {
+    for (const item of nextRoutes.values()) {
+      if (item.meta.visible) {
+        return true
+      }
+    }
+    return false
+  } else {
+    return false
+  }
+}

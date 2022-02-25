@@ -1,6 +1,6 @@
 import type { CreateAxiosOptions } from './types'
 import { transform } from './transform'
-import { deepMerge } from '../../utils'
+import { deepMerge } from '../../utils/base'
 import { initAxios } from './axios'
 import { ContentTypeEnum } from '@/enums/httpEnum'
 import { VITE_API_DOMAIN, Prefix } from '@/enums/envEnum'

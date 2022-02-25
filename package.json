@@ -15,7 +15,6 @@
     "lodash-es": "^4.17.21",
     "screenfull": "^5.1.0",
     "vue": "^3.2.20",
-    "vue-grid-layout": "3.0.0-beta1",
     "vue-router": "4",
     "vuex": "^4.0.2"
   },

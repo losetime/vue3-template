@@ -48,7 +48,7 @@ import { Form, message } from 'ant-design-vue'
 import { deptDetailRules } from '@/validator/setting'
 import { actionTypeEnum } from '@/enums/commonEnum'
 import { apiGetDeptDetail, apiGetDepartmentList, apiAddDept, apiUpdateDept } from '@/service/api/setting'
-import { findTreePath } from '@/utils'
+import { findTreePath } from '@/utils/base'
 
 const props = defineProps<{
   handleRefresh: Function
