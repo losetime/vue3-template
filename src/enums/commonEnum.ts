@@ -7,52 +7,28 @@ export enum actionTypeEnum {
   CHECK = 2, // 查看
 }
 
-export const chartTypeEnum = [
-  {
-    label: 'histogram',
-    value: 'bar',
-  },
-  {
-    label: 'barGraph',
-    value: 'bar',
-  },
-  {
-    label: 'lineChart',
-    value: 'line',
-  },
-  {
-    label: 'pieChart',
-    value: 'pie',
-  },
-  {
-    label: 'numGraph',
-    value: 'numGraph',
-  },
-  {
-    label: 'tableGraph',
-    value: 'tableGraph',
-  },
-]
-
 export const colorsEnum = [
-  '#219F94',
-  '#C1DEAE',
-  '#AEDEC1',
-  '#E8E8A6',
-  '#C0D8C0',
-  '#F5EEDC',
-  '#ECB390',
-  '#25A19C',
-  '#50BDBA',
-  '#AEFEFF',
-  '#72DFE7',
-  '#FFE653',
-  '#78E4D4',
-  '#998CEB',
-  '#F0E9D2',
-  '#E6DDC4',
-  '#D57F7F',
-  '#A2CDCD',
-  '#39A3A5',
-  '#378B85',
+  '#1890FF',
+  '#2FC25B',
+  '#81D3F8',
+  '#015C61',
+  '#00C0E4',
+  '#437B53',
+  '#DDB23A',
+  '#E6567A',
+  '#7958F0',
+  '#558262',
+  '#E3BF58',
+  '#24D3F4',
+  '#EC6E8E',
+  '#9477FB',
+  '#81A58B',
+  '#ECD080',
+  '#94EBFB',
+  '#FEA3B9',
+  '#B2D2BA',
+  '#EAC96A',
+  '#45DAF6',
+  '#FA89A5',
+  '#AF99FF',
 ]

@@ -9,3 +9,10 @@ import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
 const locale = reactive(zhCN)
 </script>
+<style lang="less">
+body {
+  p {
+    margin: 0;
+  }
+}
+</style>

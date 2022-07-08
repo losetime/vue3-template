@@ -9,8 +9,8 @@
       </div>
       <div class="form-wrap">
         <div class="title-wrap">
-          <p class="title-text">数字孪生管理后台</p>
-          <p class="subtitle-text">DATA CENTER PLATFORM SYSTEM</p>
+          <p class="title-text">赋码平台</p>
+          <p class="subtitle-text">ENDOW CODE PLATFORM SYSTEM</p>
         </div>
         <a-form :label-col="labelCol">
           <a-form-item has-feedback v-bind="validateInfos.userName">

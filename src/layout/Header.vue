@@ -3,7 +3,7 @@
     <div class="header-left-wrap">
       <div class="logo-wrap">
         <img src="../assets/images/common/logo.png" alt="logo" />
-        <span>数字孪生管理后台</span>
+        <span>赋码平台</span>
       </div>
       <a-menu mode="horizontal" :selectedKeys="currentNavKey" @select="handleSelectKeys">
         <template v-for="item in headerMenu">

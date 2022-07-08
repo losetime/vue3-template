@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import store from '@/store'
+// import store from '@/store'
 import Layout from '@/layout/Layout.vue'
 import Header from '@/layout/Header.vue'
 import Sidebar from '@/layout/Sidebar.vue'
@@ -31,6 +31,36 @@ const routes = [
     name: 'Login',
     component: () => import('../views/login/index.vue'),
   },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Layout,
+    redirect: '/home/overview',
+    meta: {
+      title: '主页',
+      level: 1,
+      visible: true,
+    },
+    children: [
+      {
+        path: 'overview',
+        name: 'Overview',
+        components: {
+          default: Header,
+          sidebar: Sidebar,
+          breadcrumb: Breadcrumb,
+          main: () => import('../views/home/Overview.vue'),
+        },
+        meta: {
+          title: '首页',
+          level: 2,
+          visible: true,
+          icon: '#',
+        },
+        children: [],
+      },
+    ],
+  },
 ]
 
 const specialRoute = ['Overview', 'FlowDesign']
@@ -47,56 +77,6 @@ export const getRouters = async () => {
     })
   }
 }
-
-export const router = createRouter({
-  history: createWebHistory(),
-  routes,
-})
-
-/**
- * @desc 路由守卫
- */
-router.beforeEach((to, _from, next) => {
-  const storeToken = store.state.token
-  const cacheToken = localStorage.getItem('ymToken')
-  if (to.name === 'Login') {
-    if (cacheToken) {
-      store.commit('SET_TOKEN', cacheToken)
-      store
-        .dispatch('GetUserInfo')
-        .then(async () => {
-          await getRouters()
-          next({ name: 'OnlineMonitor' })
-        })
-        .catch(() => {
-          localStorage.removeItem('ymToken')
-          next()
-        })
-    } else {
-      next()
-    }
-  } else {
-    if (cacheToken) {
-      if (storeToken) {
-        next()
-      } else {
-        store.commit('SET_TOKEN', cacheToken)
-        store
-          .dispatch('GetUserInfo')
-          .then(async () => {
-            await getRouters()
-            next({ path: to.path, query: to.query })
-          })
-          .catch(() => {
-            localStorage.removeItem('ymToken')
-            next({ name: 'Login' })
-          })
-      }
-    } else {
-      next({ name: 'Login' })
-    }
-  }
-})
 
 /**
  * @desc 格式化后端返回的路由信息
@@ -173,5 +153,55 @@ const formattRouter = (data: any[], routerArr: any[]): any[] => {
   }
   return routerArr
 }
+
+export const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+/**
+ * @desc 路由守卫
+ */
+// router.beforeEach((to, _from, next) => {
+//   const storeToken = store.state.token
+//   const cacheToken = localStorage.getItem('ymToken')
+//   if (to.name === 'Login') {
+//     if (cacheToken) {
+//       store.commit('SET_TOKEN', cacheToken)
+//       store
+//         .dispatch('GetUserInfo')
+//         .then(async () => {
+//           await getRouters()
+//           next({ name: 'Overview' })
+//         })
+//         .catch(() => {
+//           localStorage.removeItem('ymToken')
+//           next()
+//         })
+//     } else {
+//       next()
+//     }
+//   } else {
+//     if (cacheToken) {
+//       if (storeToken) {
+//         next()
+//       } else {
+//         store.commit('SET_TOKEN', cacheToken)
+//         store
+//           .dispatch('GetUserInfo')
+//           .then(async () => {
+//             await getRouters()
+//             next({ path: to.path, query: to.query })
+//           })
+//           .catch(() => {
+//             localStorage.removeItem('ymToken')
+//             next({ name: 'Login' })
+//           })
+//       }
+//     } else {
+//       next({ name: 'Login' })
+//     }
+//   }
+// })
 
 export default router
