@@ -19,8 +19,7 @@ import { apiUpdateOnlineMonitorSolution } from '@/service/api/alarm'
 import { message } from 'ant-design-vue'
 
 const props = defineProps<{
-  handleRefresh: Function
-  getSourceData: Function
+  handleReacquire: Function
 }>()
 
 const visible = ref<boolean>(false)
@@ -54,10 +53,10 @@ const handleConfirm = async () => {
   confirmLoading.value = false
   if (code === 200) {
     if (handleType.value === actionTypeEnum.ADD) {
-      props.handleRefresh()
+      props.handleReacquire(1)
       message.success('操作成功')
     } else {
-      props.getSourceData()
+      props.handleReacquire()
       message.success('操作成功')
     }
     handleCancel()

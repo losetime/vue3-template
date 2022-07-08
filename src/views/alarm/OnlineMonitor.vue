@@ -18,7 +18,7 @@
         </template>
       </ym-table>
     </div>
-    <online-monitor-solution ref="detailInstance" :handleRefresh="handleRefresh" :getSourceData="getSourceData" />
+    <online-monitor-solution ref="detailInstance" :handleReacquire="handleReacquire" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@ import { reactive, ref } from 'vue'
 import YmTable from '@/components/common/YmTable.vue'
 import OnlineMonitorSolution from '@/components/alarm/OnlineMonitorSolution.vue'
 import { apiGetOnlineMonitorList } from '@/service/api/alarm'
-import { onlineMonitorColumns } from '@/enums/tableHeadEnum'
+import { onlineMonitorColumns } from '@/columns/alarm'
 import { actionTypeEnum } from '@/enums/commonEnum'
 
 /**
@@ -43,15 +43,8 @@ const searchParams = reactive({ dsName: '' })
 /**
  * @desc 重新获取列表
  */
-const handleRefresh = () => {
-  tableInstance.value.handleRefresh()
-}
-
-/**
- * @desc 获取列表当前页
- */
-const getSourceData = () => {
-  tableInstance.value.getSourceData()
+const handleReacquire = (page?: number) => {
+  tableInstance.value.handleReacquire(page)
 }
 
 /**

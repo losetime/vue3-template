@@ -13,12 +13,14 @@
             <Iconfont :type="item.meta.icon" class="icon-font" />
           </template>
           <template #title>{{ item.meta.title }}</template>
-          <a-menu-item v-for="subItem in item.children" :key="subItem.name">
-            <template #icon>
-              <Iconfont :type="subItem.meta.icon" class="icon-font" />
-            </template>
-            <span>{{ subItem.meta.title }}</span>
-          </a-menu-item>
+          <template v-for="subItem in item.children">
+            <a-menu-item v-if="isVisibleRoute(subItem)" :key="subItem.name">
+              <template #icon>
+                <Iconfont :type="subItem.meta.icon" class="icon-font" />
+              </template>
+              <span>{{ subItem.meta.title }}</span>
+            </a-menu-item>
+          </template>
         </a-sub-menu>
         <a-menu-item :key="item.name" v-else>
           <template #icon>
@@ -36,7 +38,7 @@ import { ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import Iconfont from '@/components/common/Iconfont.vue'
-import { isVisibleNextRoute } from '@/utils/base'
+import { isVisibleNextRoute, isVisibleRoute } from '@/utils/base'
 
 const route = useRoute()
 const router = useRouter()

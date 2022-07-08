@@ -18,7 +18,7 @@
         </template>
       </ym-table>
     </div>
-    <assistant-control-solution ref="detailInstance" :handleRefresh="handleRefresh" :getSourceData="getSourceData" />
+    <assistant-control-solution ref="detailInstance" :handleReacquire="handleReacquire" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@ import { reactive, ref } from 'vue'
 import YmTable from '@/components/common/YmTable.vue'
 import AssistantControlSolution from '@/components/alarm/AssistantControlSolution.vue'
 import { apiGetAssistantControlList } from '@/service/api/alarm'
-import { assistantControlColumns } from '@/enums/tableHeadEnum'
+import { assistantControlColumns } from '@/columns/alarm'
 import { actionTypeEnum } from '@/enums/commonEnum'
 
 /**
@@ -43,15 +43,8 @@ const searchParams = reactive({ dsName: '' })
 /**
  * @desc 重新获取列表
  */
-const handleRefresh = () => {
-  tableInstance.value.handleRefresh()
-}
-
-/**
- * @desc 获取列表当前页
- */
-const getSourceData = () => {
-  tableInstance.value.getSourceData()
+const handleReacquire = (page?: number) => {
+  tableInstance.value.handleReacquire(page)
 }
 
 /**

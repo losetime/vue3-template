@@ -162,3 +162,14 @@ export const isVisibleNextRoute = (route: any) => {
     return false
   }
 }
+
+/**
+ * @desc 判断当前路由是否存在且需要显示在菜单上
+ */
+export const isVisibleRoute = (route: any) => {
+  if (route.meta.visible) {
+    return true
+  } else {
+    return false
+  }
+}

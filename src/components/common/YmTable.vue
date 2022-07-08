@@ -60,7 +60,7 @@ const selectedRowKeys = ref<number[]>([])
 
 const selectedRows = ref<any[]>([])
 
-const { tableData, reqParams, getSourceData, handleRefresh, onPagination, onChangeSize } = useTable(
+const { tableData, reqParams, onChangeSize, handleReacquire } = useTable(
   props.getTableList,
   props.params,
   props.isImmediately,
@@ -98,7 +98,7 @@ const pagination = computed(() =>
         pageSize: reqParams.size,
         total: tableData.total,
         showTotal: (total: any) => `共${total}条`,
-        onChange: onPagination,
+        onChange: handleReacquire,
         showQuickJumper: true,
         showSizeChanger: true,
         onShowSizeChange: (current: number, pageSize: number) => {
@@ -142,9 +142,7 @@ defineExpose({
   reqParams,
   selectedRowKeys,
   selectedRows,
-  onPagination,
-  getSourceData,
-  handleRefresh,
+  handleReacquire,
 })
 </script>
 <style lang="less" scoped>

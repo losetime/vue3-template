@@ -21,11 +21,6 @@ const useTable = (getTableData: Function, tableParams?: Object, isImmediately?: 
     reqParams.size = size
   }
 
-  const handleRefresh = () => {
-    reqParams.current = 1
-    getSourceData()
-  }
-
   const getSourceData = () => {
     tableData.loading = true
     const tempParams = formatParams({ ...tableParams })
@@ -44,8 +39,13 @@ const useTable = (getTableData: Function, tableParams?: Object, isImmediately?: 
     })
   }
 
-  const onPagination = (page: number) => {
-    reqParams.current = page
+  /**
+   * @desc 重新请求
+   */
+  const handleReacquire = (page?: number) => {
+    if (typeof page === 'number') {
+      reqParams.current = page
+    }
     getSourceData()
   }
 
@@ -58,10 +58,8 @@ const useTable = (getTableData: Function, tableParams?: Object, isImmediately?: 
   return {
     tableData,
     reqParams,
-    handleRefresh,
-    getSourceData,
-    onPagination,
     onChangeSize,
+    handleReacquire,
   }
 }
 

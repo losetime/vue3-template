@@ -9,7 +9,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "ant-design-vue": "^3.0.0-alpha.14",
+    "ant-design-vue": "^3.2.10",
     "axios": "^0.21.4",
     "dayjs": "^1.10.7",
     "lodash-es": "^4.17.21",
