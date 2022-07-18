@@ -22,11 +22,14 @@
         <Iconfont type="icon-quanping" class="full-screen-icon" @click="toggleFullscreen" v-else />
       </div>
       <a-dropdown placement="bottomRight" :trigger="['click']">
-        <a-avatar class="avatar-wrap">
-          <template #icon>
-            <Iconfont type="icon-nan_7" />
-          </template>
-        </a-avatar>
+        <div class="user-info">
+          <a-avatar class="avatar-wrap">
+            <template #icon>
+              <Iconfont type="icon-nan_7" />
+            </template>
+          </a-avatar>
+          <span>{{ userName }}</span>
+        </div>
         <template #overlay>
           <a-menu>
             <a-menu-item key="0" @click="handleSetting">系统设置</a-menu-item>
@@ -51,13 +54,15 @@ import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
 const route = useRoute()
 const router = useRouter()
 
+const isFullscreen = ref(false)
+
 // 所有导航菜单
 const headerMenu = computed<Array<any>>(() => router.getRoutes().filter((val) => val.meta.level === 1))
 
 // 匹配当前一级导航
 const currentNavKey = computed(() => [route.matched[0].name])
 
-const isFullscreen = ref(false)
+const userName = computed(() => store.state.userInfo.userName)
 
 /**
  * @desc 选择菜单
@@ -161,10 +166,16 @@ const onLogout = () => {
         cursor: pointer;
       }
     }
-    .avatar-wrap {
+    .user-info {
       margin: 0 20px;
       cursor: pointer;
-      font-size: 22px;
+      .avatar-wrap {
+        font-size: 22px;
+        margin-right: 8px;
+      }
+      span {
+        color: #ffffff;
+      }
     }
   }
 }

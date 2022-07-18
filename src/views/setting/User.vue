@@ -108,7 +108,7 @@ const getDepartmentList = async () => {
   if (code === 200) {
     treeList.value = data
     deptId.value = data[0].id
-    tableInstance.value.getSourceData()
+    getSourceData()
   }
 }
 
@@ -131,14 +131,14 @@ const deptId = ref(-1)
  * @desc 列表刷新
  */
 const handleRefresh = () => {
-  tableInstance.value.handleRefresh()
+  tableInstance.value.handleReacquire(1)
 }
 
 /**
  * @desc 重新获取当前页列表
  */
 const getSourceData = () => {
-  tableInstance.value.getSourceData()
+  tableInstance.value.handleReacquire()
 }
 
 /**
@@ -168,7 +168,7 @@ const handleDel = (userId: number) => {
     const { code } = await apiDeleteUser({ userId })
     if (code === 200) {
       message.success('删除成功')
-      tableInstance.value.getSourceData()
+      getSourceData()
     }
   })
 }
@@ -180,7 +180,7 @@ const changeUserStatus = async (checked: string, record: any) => {
   const { userId } = record
   const { code } = await apiModifyUserStatus({ status: checked, userId })
   if (code === 200) {
-    tableInstance.value.getSourceData()
+    getSourceData()
     message.success(checked === '0' ? '已启用' : '已停用')
   }
 }

@@ -113,6 +113,7 @@ const loginSubmit = () => {
     if (code === 200) {
       store.commit('SET_TOKEN', data.token)
       localStorage.setItem('ymToken', data.token)
+      store.dispatch('GetUserInfo')
       await getRouters()
       // 获取路由第一个
       const firstLevelRoute = router.getRoutes().filter((val) => val.meta.level === 1)

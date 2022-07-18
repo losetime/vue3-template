@@ -3,11 +3,22 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import useEcharts from '@/hooks/useEcharts'
 
 const props = defineProps<{
   series: Array<any>
 }>()
+
+watch(
+  () => props.series,
+  () => {
+    if (props.series.length > 0) {
+      destroyInstance()
+      chartInit()
+    }
+  },
+)
 
 /**
  * @desc 初始化图表

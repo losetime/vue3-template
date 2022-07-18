@@ -20,16 +20,6 @@ const useEcharts = (chartInit: Function, series: Array<any>) => {
   const randomId = computed(() => nanoid())
 
   watch(
-    () => series,
-    () => {
-      if (series.length > 0) {
-        destroyInstance()
-        chartInit()
-      }
-    },
-  )
-
-  watch(
     () => sidebarStatus.value,
     () => {
       const timeout = setTimeout(() => {

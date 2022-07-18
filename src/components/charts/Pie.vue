@@ -3,11 +3,22 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import useEcharts from '@/hooks/useEcharts'
 
 const props = defineProps<{
   series: any
 }>()
+
+watch(
+  () => props.series,
+  () => {
+    if (props.series.length > 0) {
+      destroyInstance()
+      chartInit()
+    }
+  },
+)
 
 const formattValue = (val: string) => {
   return val ? parseInt(val) : 0

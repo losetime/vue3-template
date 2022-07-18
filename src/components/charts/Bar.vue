@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import useEcharts from '@/hooks/useEcharts'
 
 const props = defineProps<{
@@ -10,6 +11,16 @@ const props = defineProps<{
   xAxis?: Array<any>
   yAxis?: Array<any>
 }>()
+
+watch(
+  () => props.series,
+  () => {
+    if (props.series.length > 0) {
+      destroyInstance()
+      chartInit()
+    }
+  },
+)
 
 /**
  * @desc 初始化图表
